@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="us-ascii"?>
-<Project>
-  <StartFile>kernel.cpp</StartFile>
-  <Launch>qemu</Launch>
-  <OutputType>iso</OutputType>
-  <CPPVersion>17</CPPVersion>
-</Project>
