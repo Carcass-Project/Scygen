@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "ScygenRT": {
-      "commandName": "Project",
-      "commandLineArgs": "new TestBuild"
-    }
-  }
-}
