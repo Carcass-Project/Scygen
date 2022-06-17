@@ -31,22 +31,9 @@ There are some rules your pull request must follow however:
 If you're on Windows, you need to use the ScygenSetup to install Scygen.
 After you're done with that, you should also install QEMU, so you can run the kernel.
 
-If you're on Linux, however, you have to install the tools that Scygen uses with your package manager, and then make a bash script that uses them in this way:
-
-  1. Compile your C++ files with clang++.
-  2. Assemble your assembly files with NASM with 64-bit ELF.
-  3. Link them with ld.lld.
-  4. Clone the Limine binaries(https://github.com/limine-bootloader/limine/tree/v3.5.4-binary)
-  5. Run this `mkdir -p iso_root
-	cp kernel/kernel.elf \
-		limine.cfg limine/limine.sys limine/limine-cd.bin limine/limine-cd-efi.bin iso_root/`
-  6. Run xorriso: `xorriso -as mkisofs -b limine-cd.bin \
-		-no-emul-boot -boot-load-size 4 -boot-info-table \
-		--efi-boot limine-cd-efi.bin \
-		-efi-boot-part --efi-boot-image --protective-msdos-label \
-		iso_root -o <output iso name>`
-  7. Now use limine-deploy: `limine/limine-deploy barebones.iso`
-  8. Make a HDD file for the VM for QEMU.
-  9. Run QEMU.
-
-It's complicated for Linux, but I'm hoping to fix that part soon.
+If you are on linux, chances are that the Makefile can cover you. It might require editing as it isnt extensivly tested, but hopefully it will cover you. All operations need you to specify the project directory, and it will always output a *kernel.iso* as final product. There is a run command for QEMU aswell.
+```sh
+make all DIR="myproject" # Build myproject
+make run DIR="myproject" # Run, this will build automatically!
+make clean DIR="myproject" # Clean up build files! This does not remove the "limine" directory!
+```
